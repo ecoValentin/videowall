@@ -1,0 +1,23 @@
+version: "2.4"
+
+services:  
+    frontend:
+        container_name: videowall
+        build:
+            context: ./
+            dockerfile: Dockerfile
+        volumes:
+          - "/etc/timezone:/etc/timezone:ro"
+          - "/etc/localtime:/etc/localtime:ro"
+        ports:
+        - "8080:8080"
+        restart: unless-stopped
+
+networks:
+  default:
+    name: Videowall
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.123.0.0/24
+          gateway: 172.123.0.1

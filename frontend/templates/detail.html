@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+
+{% block content %}
+<br>
+<div class="container">
+  <h2>
+    <div class="left">
+      <a href="{{url_for('detail', id=id|int-1)}}">
+        &#171;
+      </a>
+    </div>
+    <div class="center">
+      <a href="{{url_for('show')}}">
+        Zurück zur Übersicht
+      </a>
+    </div>
+    <div class="right">
+      <a href="{{url_for('detail', id=id|int+1)}}">
+        &#187;</a>
+    </div>
+    <br><br>
+  </h2>
+  <div class="jumbotron">
+    <div class="navbar-logo pull-right">
+      <a href="https://graz.gruene.at/" target="_blank"><img class="img-logo"
+          src="{{url_for('static', filename='Logo.png')}}" alt="Logo" /></a>
+    </div>
+    <h2>{{ video.name }}</h2>
+    <br><br>
+    <div class="row">
+      <div class="col-md-12">
+
+        <h3>
+          {{ config.question1 }}
+        </h3>
+        <p1>{{ video.q1|safe }}</p1>
+      </div>
+      <div class="col-md-12">
+        <h3>
+          {{ config.question2 }}
+        </h3>
+        <p1>{{ video.q2|safe }}</p1>
+      </div>
+      <div class="col-md-12">
+        <h3>
+          {{ config.question3 }}
+        </h3>
+        <p1>{{ video.q3|safe }}</p1>
+      </div>
+      <div class="col-md-12">
+        <h3>
+          {{ config.question4 }}
+        </h3>
+        <p1>{{ video.q4|safe }}</p1>
+      </div>
+      <div class="col-md-12">
+        <h3>
+          {{ config.question5 }}
+        </h3>
+        <p1>{{ video.q5|safe }}</p1>
+      </div>
+    </div>
+  </div>
+  <div class="jumbotron">
+    <div class="row">
+      <div class="col-md-12">
+        <div id="{{video.id}}" class="video-container">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/{{video.id}}" title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+  <h2>
+    <div class="left">
+      <a id="left" href="{{url_for('detail', id=id|int-1)}}">
+        &#171;
+      </a>
+    </div>
+    <div class="center">
+      <a href="{{url_for('show')}}">
+        Zurück zur Übersicht
+      </a>
+    </div>
+    <div class="right">
+      <a id="right" href="{{url_for('detail', id=id|int+1)}}">
+        &#187;</a>
+    </div>
+
+  </h2>
+</div>
+<footer id="sticky-footer" class="footer bg-light fixed-bottom text-center text-lg-start">
+  <!-- Copyright -->
+
+  <div style="color:#91B437;" class="text-center btn-dark p-3">
+    © 2021: Die Grünen. Coded with <a style="color:#91B437;" href="https://flask.palletsprojects.com/en/2.0.x/"
+      target="_blank">Flask</a>
+    and Love by <a target="_blank" style="color:#91B437;" href="https://github.com/ecoValentin">Valentin Gritsch</a>.
+    <a style="color:#91B437;" href="https://www.graz.gruene.at/service/formalia/impressum-offenlegung"
+      target="_blank">Impressum &
+      Offenlegung</a>
+  </div>
+  <!-- Copyright -->
+</footer>
+<script language="Javascript" type="text/javascript">document.onkeydown = checkKey;
+
+  function checkKey(e) {
+    e = e || window.event;
+    if(e.keyCode == '37') {
+      window.location.href = document.getElementById('left').href;
+    }
+    else if(e.keyCode == '39') {
+      window.location.href = document.getElementById('right').href;
+    }
+  }
+</script>
+{% endblock %}

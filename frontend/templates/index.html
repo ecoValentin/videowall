@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+
+  <div class="jumbotron">
+    <div class="row">
+      <div class="col-md-12">
+
+        <div class="navbar-logo pull-right">
+          <a href="https://graz.gruene.at/" target="_blank">
+            <img class="img-logo" src="{{url_for('static', filename='Logo.png')}}" alt="Logo" />
+          </a>
+        </div>
+        <h1>Viel Spaß mit den Bewerbungen (Text & Video) unserer Kandidat*innen</h1>
+        </br>
+      </div>
+    </div>
+    </br></br>
+    <div class="container">
+      {% for video in videos %}
+      {% if loop.index0 is divisibleby 4 %}
+      <div class="row d-flex flex-column">
+        {% endif %}
+        <a class="info" href="{{url_for('detail', id=loop.index-1)}}">
+          <div class="col col-lg-3 col-sm-6 col-xs-12 div-margin">
+            <div class="hovereffect">
+              <img src="{{ url_for('static', filename='images/' + video.id + '.jpg') }}" alt="">
+
+              <div class="overlay">
+                <h2>{{video.name}}</h2>
+
+              </div>
+            </div>
+          </div>
+        </a>
+        {% if loop.index is divisibleby 4 %}
+      </div>
+      {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+
+</div>
+<footer id="sticky-footer" class="footer bg-light fixed-bottom text-center text-lg-start">
+  <!-- Copyright -->
+
+  <div style="color:#91B437;" class="text-center btn-dark p-3">
+    © 2021: Die Grünen. Coded with <a style="color:#91B437;" href="https://flask.palletsprojects.com/en/2.0.x/"
+      target="_blank">Flask</a>
+    and Love by <a target="_blank" style="color:#91B437;" href="https://github.com/ecoValentin">Valentin Gritsch</a>.
+    <a style="color:#91B437;" href="https://www.graz.gruene.at/service/formalia/impressum-offenlegung"
+      target="_blank">Impressum &
+      Offenlegung</a>
+  </div>
+  <!-- Copyright -->
+</footer>
+<!-- Footer -->
+</div>
+
+{% endblock %}

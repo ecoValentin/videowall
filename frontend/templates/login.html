@@ -1,0 +1,49 @@
+{% import "bootstrap/wtf.html" as wtf %}
+
+{%- extends "base.html" %}
+
+
+{% block content %}
+<div class="container">
+  <div class="jumbotron">
+    <div class="navbar-logo pull-right">
+      <a href="https://graz.gruene.at/" target="_blank"><img class="img-logo"
+          src="{{url_for('static', filename='Logo.png')}}" alt="Logo" /></a>
+    </div>
+    <center>
+      <h2>Diese Inhalte sind passwortgeschützt!</h2>
+      <form action="{{ url_for('session_begin') }}" method="post">
+        <input type="text" name="key">
+        <input class="btn btn-lg btn-default" type="submit" value="Weiter">
+      </form>
+      {% with messages = get_flashed_messages() %}
+      {% if messages %}
+      {% for message in messages %}
+      </br>
+      <p style="color:#FFF000">{{ message }}</p>
+      </br>
+      </br>
+      {% endfor %}
+      {% endif %}
+      {% endwith %}
+      <p>
+        Die Videos auf dieser Seite werden von YouTube gehostet. Durch Eingabe des Passworts werden Ihre Daten an
+        YouTube übertragen. Es gelten die Datenschutzbestimmungen von YouTube.
+      </p>
+    </center>
+  </div>
+</div>
+<footer id="sticky-footer" class="footer bg-light fixed-bottom text-center text-lg-start">
+  <!-- Copyright -->
+
+  <div style="color:#91B437;" class="text-center btn-dark p-3">
+    © 2021: Die Grünen. Coded with <a style="color:#91B437;" href="https://flask.palletsprojects.com/en/2.0.x/"
+      target="_blank">Flask</a>
+    and Love by <a target="_blank" style="color:#91B437;" href="https://github.com/ecoValentin">Valentin Gritsch</a>.
+    <a style="color:#91B437;" href="https://www.graz.gruene.at/service/formalia/impressum-offenlegung"
+      target="_blank">Impressum &
+      Offenlegung</a>
+  </div>
+  <!-- Copyright -->
+</footer>
+{%- endblock %}
